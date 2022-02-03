@@ -1,0 +1,65 @@
+﻿@model InfoNapoli.Models.Equipment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.HiddenFor(model => model.IdEquipment)
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Defect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Defect)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Commentary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusEquip)
+        </dt>
+        <dd>
+            @switch (Model.StatusEquip)
+            {
+                case 1:
+                    @Html.Label("Cancelado")
+                    break;
+                case 2:
+                    @Html.Label("Em manutenção")
+                    break;
+                case 3:
+                    @Html.Label("Entregue")
+                <dt>
+                    @Html.DisplayNameFor(model => model.DepartureDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DepartureDate)
+                </dd>
+                break;
+            }
+            </dd>
+
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit Equipment", "EditEquipment", "Equipment", new { idEquipment = Model.IdEquipment }, null) |
+        @Html.ActionLink("Back to List", "DetailsCustomer", "Customer", new { idCustomer = Model.IdCustomer }, null)
+    </p>

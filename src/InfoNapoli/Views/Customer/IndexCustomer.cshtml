@@ -1,0 +1,42 @@
+﻿@model IEnumerable<InfoNapoli.Models.Customer>
+
+@{
+    ViewBag.Title = "IndexCustomer";
+}
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateCustomer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayName("Telefone")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellPhone)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditCustomer", new { idCustomer = item.IdCustomer }) |
+                @Html.ActionLink("Details", "DetailsCustomer", new { idCustomer = item.IdCustomer }) |
+                @Html.ActionLink("Delete", "DeleteCustomer", new { idCustomer = item.IdCustomer }) |
+                @Html.ActionLink("Add Equipment", "CreateEquipment", "Equipment", new { idCustomer = item.IdCustomer }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+

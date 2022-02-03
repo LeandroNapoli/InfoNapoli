@@ -1,0 +1,95 @@
+﻿@model InfoNapoli.Models.CustomerEquipments
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipments.FirstOrDefault().Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipments.FirstOrDefault().Defect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipments.FirstOrDefault().EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipments.FirstOrDefault().StatusEquip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipments.FirstOrDefault().DepartureDate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Equipments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @switch (item.StatusEquip)
+                {
+                    case 1:
+                        @Html.Label("Cancelado")
+                        break;
+                    case 2:
+                        @Html.Label("Em manutenção")
+                        break;
+                    case 3:
+                        @Html.Label("Entregue")
+
+                        break;
+                }
+            </td>
+            @switch (item.StatusEquip)
+            {
+                case 1:
+                    <td>
+                        -
+                    </td>
+                    break;
+                case 2:
+                    <td>
+                        -
+                    </td>
+                    break;
+                case 3:
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartureDate)
+                    </td>
+                    break;
+
+            }
+
+            <td>
+                @Html.ActionLink("Details Equipment", "DetailsEquipment", "Equipment", new { idEquipment = item.IdEquipment }, null) |
+                @Html.ActionLink("Equipment Delivered", "DeliveryEquipment", "Equipment", new { idEquipment = item.IdEquipment }, null) |
+                @Html.ActionLink("Cancel Equipment", "CancelEquipment", "Equipment", new { idEquipment = item.IdEquipment }, null))
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+<p>
+    @Html.ActionLink("Edit", "EditCustomer", new { idCustomer = Model.Equipments.FirstOrDefault().IdCustomer }, null) |
+    @Html.ActionLink("Back to List", "IndexCustomer")
+</p>
